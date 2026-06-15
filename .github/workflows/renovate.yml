@@ -1,0 +1,33 @@
+# SPDX-License-Identifier: GPL-3.0-only
+#
+# This file is part of the ferret-linux/.github repo:
+#    https://github.com/ferret-linux/.github
+# Copyright (C) 2026 Ferret Linux contributors
+
+name: Renovate
+
+on:
+  schedule:
+    - cron: '0 4 * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  renovate:
+    name: Renovate
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
+
+      - name: Run Renovate
+        uses: renovatebot/github-action@a9e3c4c3f7dd84f89c46cb2a3ec8d6e28a24d8b0 # v41
+        with:
+          configurationFile: renovate-config.json
+          token: ${{ secrets.RENOVATE_TOKEN }}

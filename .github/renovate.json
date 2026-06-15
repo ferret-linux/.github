@@ -1,0 +1,11 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "repositories": [
+    "ferret-linux/rubin-os",
+    "ferret-linux/koral-os",
+    "ferret-linux/mink-os",
+    "ferret-linux/norix-os",
+    "ferret-linux/build-iso",
+    "ferret-linux/.github"
+  ]
+}
